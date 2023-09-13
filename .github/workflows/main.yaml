@@ -1,0 +1,27 @@
+name: Reproduction Materials
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - name: Build Docker image.
+        run: docker build -t gptools .
+      - name: Generate figures (using ./in-docker.sh but we can't use `-it` in the Action).
+        run: docker run --rm -e FAST=true -v `pwd`:/workdir gptools cook exec figures
+      - name: Upload figures and reports as artifacts.
+        uses: actions/upload-artifact@v3
+        with:
+          name: figures-reports
+          path: |
+            */*.html
+            */*.pdf
+            */*.png
