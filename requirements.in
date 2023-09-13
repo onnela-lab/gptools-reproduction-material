@@ -1,0 +1,9 @@
+cook-build
+gptools-stan>=0.1.4
+gptools-util>=0.1.1
+matplotlib
+jupyter
+jupytext
+pip-tools
+scipy
+tabulate
