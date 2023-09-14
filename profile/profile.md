@@ -70,7 +70,7 @@ def load_lps(filename: str) -> np.ndarray:
     errors = []
     for fit, eta, data in zip(result["fits"], result["etas"], result["data"]):
         if fit is None:
-            mses.append(np.nan)
+            errors.append(np.nan)
             continue
         test_idx = np.setdiff1d(1 + np.arange(size), data["observed_idx"]) - 1
         if not test_idx.size:
