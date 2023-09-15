@@ -1,4 +1,4 @@
-# Reproduction materials for "Scalable Gaussian Process Inference with Stan" [![Reproduction Materials](https://github.com/tillahoffmann/gptools-reproduction-material/actions/workflows/main.yaml/badge.svg)](https://github.com/tillahoffmann/gptools-reproduction-material/actions/workflows/main.yaml)
+# Reproduction materials for "Scalable Gaussian Process Inference with Stan" [![Reproduction Materials](https://github.com/onnela-lab/gptools-reproduction-material/actions/workflows/main.yaml/badge.svg)](https://github.com/onnela-lab/gptools-reproduction-material/actions/workflows/main.yaml)
 
 This repository comprises code and data to reproduce the results and figures in the accompanying manuscript [Scalable Gaussian Process Inference with Stan](https://doi.org/10.48550/arXiv.2301.08836). The source code of the package `gptools-stan` used by these reproduction materials is available [here](https://github.com/onnela-lab/gptools) and can be installed using `pip install gptools-stan`.
 
@@ -29,7 +29,7 @@ If you switch between containerized and local runtime, you may need to remove co
 
 ### Continuous integration
 
-To ensure the reproducibility of these materials, the results are also computed as the output of a GitHub Action workflow [![Reproduction Materials](https://github.com/tillahoffmann/gptools-reproduction-material/actions/workflows/main.yaml/badge.svg)](https://github.com/tillahoffmann/gptools-reproduction-material/actions/workflows/main.yaml) with the `FAST=true` flag. Figures can be obtained by selecting a workflow run and downloading the `figures-reports` artifact.
+To ensure the reproducibility of these materials, the results are also computed as the output of a GitHub Action workflow [![Reproduction Materials](https://github.com/onnela-lab/gptools-reproduction-material/actions/workflows/main.yaml/badge.svg)](https://github.com/onnela-lab/gptools-reproduction-material/actions/workflows/main.yaml) with the `FAST=true` flag. Figures can be obtained by selecting a workflow run and downloading the `figures-reports` artifact.
 
 ## Running the experiments
 
