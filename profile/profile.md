@@ -20,7 +20,6 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 import numpy as np
 import pickle
-from gptools.stan.profile import PARAMETERIZATIONS, LOG10_NOISE_SCALES, SIZES
 import os
 import pandas as pd
 import re
@@ -28,6 +27,13 @@ from scipy import stats
 import types
 from pathlib import Path
 
+# Same as in `recipe.py`.
+SIZES = 16 * 2 ** np.arange(11)
+LOG10_NOISE_SCALES = np.linspace(-1, 1, 7)
+PARAMETERIZATIONS = [
+    "graph_centered", "graph_non_centered", "fourier_centered", "fourier_non_centered",
+    "standard_centered", "standard_non_centered"
+]
 
 mpl.style.use("../jss.mplstyle")
 fig_width, fig_height = mpl.rcParams["figure.figsize"]
