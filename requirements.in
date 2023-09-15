@@ -1,5 +1,5 @@
 cook-build
-gptools-stan>=0.1.4
+gptools-stan>=0.1.5
 gptools-util>=0.1.1
 matplotlib
 jupyter
