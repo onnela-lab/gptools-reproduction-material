@@ -11,6 +11,7 @@ __pycache__
 linear/linear
 padding/exact
 padding/padded
+playground
 profile/fourier_centered
 profile/fourier_non_centered
 profile/graph_centered
