@@ -8,6 +8,7 @@
 *.pkl
 *.tmp
 __pycache__
+linear/linear
 padding/exact
 padding/padded
 profile/fourier_centered

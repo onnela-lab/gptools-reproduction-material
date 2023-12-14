@@ -93,12 +93,14 @@ with create_group("profile") as profile_group:
 
 # Run the notebooks to generate figures.
 figures = []
-for example in ["kernels", "padding", "profile", "trees", "tube"]:
+for example in ["kernels", "linear", "padding", "profile", "trees", "tube"]:
     ipynb = Path(example, f"{example}.ipynb")
     md = ipynb.with_suffix(".md")
     create_task(f"{example}:nb", dependencies=[md], targets=[ipynb],
                 action=f"jupytext --to notebook {md}")
-    targets = [ipynb.with_suffix(".png"), ipynb.with_suffix(".html")]
+    targets = [ipynb.with_suffix(".html")]
+    if example != "linear":
+        targets.append(ipynb.with_suffix(".png"))
     task = create_task(
         f"{example}:fig", dependencies=[ipynb], targets=targets,
         action=f"jupyter nbconvert --to=html --execute --ExecutePreprocessor.timeout=-1 {ipynb}"
