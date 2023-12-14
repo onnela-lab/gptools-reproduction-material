@@ -3,7 +3,6 @@
 .ipynb_checkpoints
 *.hpp
 *.html
-*.ipynb
 *.o
 *.pdf
 *.pkl
