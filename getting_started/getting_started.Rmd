@@ -1,0 +1,32 @@
+Install the packages. We explicitly specify the repos here so we don't get asked for the mirror when
+rendering the Rmarkdown.
+
+```{r}
+install.packages(
+  "cmdstanr",
+  repos = c("https://mc-stan.org/r-packages/", "http://cran.us.r-project.org")
+)
+install.packages("gptoolsStan", repos=c("http://cran.us.r-project.org"))
+```
+
+Compile and run the model.
+
+```{r}
+library(cmdstanr)
+library(gptoolsStan)
+
+model <- cmdstan_model(
+  stan_file="getting_started.stan",
+  include_paths=gptools_include_path(),
+)
+fit <- model$sample(
+  data=list(n=100, sigma=1, length_scale=0.1, period=1),
+  chains=1,
+  iter_warmup=500,
+  iter_sampling=50
+)
+f <- fit$draws("f")
+dim(f)
+```
+
+Expected output: `[1]  50   1 100`

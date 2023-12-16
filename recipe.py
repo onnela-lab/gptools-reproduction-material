@@ -91,27 +91,48 @@ with create_group("profile") as profile_group:
     create_profile_task("sample", "fourier_non_centered", 0, 10_000, timeout=300)
 
 
-# Run the notebooks to generate figures.
+# Run the notebooks to generate figures (the booleans indicate if a figure should be generated.)
 figures = []
-for example in ["kernels", "linear", "padding", "profile", "trees", "tube"]:
+examples = {
+    "getting_started": False,
+    "kernels": True,
+    "linear": False,
+    "padding": True,
+    "profile": True,
+    "trees": True,
+    "tube": True,
+}
+for example, has_figure in examples.items():
     ipynb = Path(example, f"{example}.ipynb")
     md = ipynb.with_suffix(".md")
     create_task(f"{example}:nb", dependencies=[md], targets=[ipynb],
                 action=f"jupytext --to notebook {md}")
     targets = [ipynb.with_suffix(".html")]
-    if example != "linear":
-        targets.append(ipynb.with_suffix(".png"))
+    if has_figure:
+        figure = ipynb.with_suffix(".png")
+        targets.append(figure)
+        figures.append(figure)
     task = create_task(
-        f"{example}:fig", dependencies=[ipynb], targets=targets,
+        f"{example}:run", dependencies=[ipynb], targets=targets,
         action=f"jupyter nbconvert --to=html --execute --ExecutePreprocessor.timeout=-1 {ipynb}"
     )
     if example == "profile":
         task.task_dependencies.append(profile_group.task)
-    figures.append(targets[0])
 
 
 # Task that reproduces all outputs.
 create_task("figures", dependencies=figures)
+
+# Add the R example for getting started.
+rmd = "getting_started/getting_started.Rmd"
+html = Path("getting_started/getting_started_R.html")
+action = [
+    "Rscript",
+    "-e",
+    f"rmarkdown::render('{rmd}', output_file = '{html.name}', output_dir='getting_started')"
+]
+create_task(name="getting_started_R:run", dependencies=[rmd], targets=[html],
+            action=action)
 
 
 def delete_compiled_stan_files(_: Task) -> None:

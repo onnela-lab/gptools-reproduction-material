@@ -17,6 +17,10 @@ jobs:
         run: docker build -t gptools .
       - name: Verify notebooks are up to date.
         run: docker run --rm -v `pwd`:/workdir gptools pytest -v
+      - name: Render the getting started notebook for Python.
+        run: docker run --rm -v `pwd`:/workdir gptools cook exec getting_started:run
+      - name: Render the getting started Rmarkdown for R.
+        run: docker run --rm -v `pwd`:/workdir gptools cook exec getting_started_R:run
       - name: Generate figures (using ./in-docker.sh but we can't use `-it` in the Action).
         run: docker run --rm -e FAST=true -v `pwd`:/workdir gptools cook exec figures
       - name: Upload figures and reports as artifacts.
