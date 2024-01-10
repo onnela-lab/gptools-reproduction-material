@@ -100,11 +100,11 @@ fig.tight_layout()
 
 We compare the GP-based inference with a simpler approach that employes a Gaussian filter to smooth the data. The estimate is
 $$
-\hat{\vec{y}}_\lambda = \frac{\vec{g}_\lambda\ast\parenth{\vec{b}\circ\vec{y}}}{\vec{g}_\lambda\ast\vec{b}},
+\hat{\vec{y}}_\lambda = \frac{\vec{g}_\lambda\ast\left(\vec{b}\circ\vec{y}\right)}{\vec{g}_\lambda\ast\vec{b}},
 $$
 where $\ast$ denotes convolution, $\circ$ denotes the elementwise product, $\vec{g}_\lambda$ is a Gaussian filter with smoothing scale $\lambda$, and $\vec{b}$ is the binary mask indicating which data are available for training. Because the Gaussian filter only provides a point estimate, we cannot use the posterior predictive distribution to compare the two approaches. We instead use a scaled mean squared error
 $$
-S\parenth{\vec{y},\hat{\vec{y}}=\exp\hat{\vec{f}}} = \frac{1}{m}\sum_{j=1}^m \frac{\parenth{y_i-\exp \hat f_i}^2}{\max\parenth{y_i,1}},
+S\left(\vec{y},\hat{\vec{y}}\right) = \exp\hat{\vec{f}} = \frac{1}{m}\sum_{j=1}^m \frac{\left(y_i-\exp \hat f_i\right)^2}{\max\left(y_i,1\right)},
 $$
 to compare the held out data $\vec{y}$ with the prediction $\hat{\vec{y}}$. The scaling ensures large frequencies do not dominate the error measure because they [naturally have a larger variance](https://en.wikipedia.org/wiki/Poisson_distribution#Descriptive_statistics).
 
