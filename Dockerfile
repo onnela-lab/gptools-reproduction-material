@@ -11,4 +11,4 @@ RUN Rscript setup.R
 # Install Python dependencies and compile cmdstan.
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN python -m cmdstanpy.install_cmdstan --verbose --version 2.33.0
+RUN python -m cmdstanpy.install_cmdstan --verbose --version 2.36.0

@@ -1,3 +1,3 @@
-repos <- c("https://mc-stan.org/r-packages/", "http://cran.us.r-project.org")
+repos <- c("https://stan-dev.r-universe.dev", "http://cran.us.r-project.org")
 install.packages("cmdstanr", repos=repos)
-install.packages("onnela-lab/gptoolsStan", repos=repos)
+devtools::install_github("onnela-lab/gptoolsStan", ref="v0.2.0")

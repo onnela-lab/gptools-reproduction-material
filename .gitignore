@@ -3,6 +3,7 @@ __pycache__
 .DS_Store
 .ipynb_checkpoints
 .Rhistory
+.vscode
 *.hpp
 *.html
 *.o
